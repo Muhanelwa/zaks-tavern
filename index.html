@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reiger Park Tavern | Boksburg's Favorite Hangout</title>
+    <style>
+        :root {
+            --primary-color: #111110;
+            --secondary-color: #f71909;
+            --accent-color: #f39c12;
+            --text-color: #0a0101;
+            --light-bg: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            background-image: url('pictures/cover.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e30f0f;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .drink-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .drink-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .drink-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .drink-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .drink-card:hover .drink-image img {
+            transform: scale(1.1);
+        }
+        
+        .drink-info {
+            padding: 1.5rem;
+        }
+        
+        .drink-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .drink-info p {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .events {
+            background-color: var(--light-bg);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-image {
+            height: 200px;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .event-info {
+            padding: 1.5rem;
+        }
+        
+        .event-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .event-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonials {
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .contact {
+            background-color: var(--light-bg);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .trading-hours {
+            margin-top: 2rem;
+        }
+        
+        .trading-hours h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .day {
+            font-weight: bold;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .map {
+            height: 400px;
+            margin-top: 3rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .footer-content p {
+            margin-top: 1rem;
+        }
+        
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Zak’s Tavern</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#values">Our values</a></li>
+                    <li><a href="#drinks">Drinks</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#trading-hours">Trading Hours</a></li>
+                    <li><a href="#map">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Zak's Tavern</h1>
+            <p>Reiger Park's favorite place to relax, socialize and enjoy good drinks with friends</p>
+            <a href="#contact" class="btn">Find Us</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="pictures/certificate.jpg" alt="Zak's Tavern recognised">
+                </div>
+                <div class="about-text">
+                    <h3>Your Neighborhood Tavern in Reiger Park</h3>
+                    <p>Welcome to Zak's Tavern, a local favorite hangout spot where the community comes together. While we don't operate as a restaurant, we love sharing delicious food with our customers as part of the authentic tavern experience.</p>
+                    <p>Our tavern has been a cornerstone of the Reiger Park community for years, providing a warm, welcoming atmosphere where friends can gather, share stories, and create memories.</p>
+                    <p>Whether you're looking to enjoy a cold beer after work, taste some of our complimentary food offerings, or just spend quality time with friends and family, Zak’s Tavern is the place to be in Boksburg.</p>
+                    <p>At Zak's Tavern, we are committed to fostering a welcoming and inclusive atmosphere. We believe in promoting community engagement, respect, and enjoyment for all our guests. Our core values are centered around delivering excellent service, creating a space where everyone feels at home, and encouraging positive connections. We also prioritize health and well-being by offering fun, active events that bring people together. Whether you're here to relax, connect, or celebrate, we aim to make every visit memorable and enjoyable.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Values Section -->
+     <div id="values-content" class="toggle-content">
+        <h2>Our Values</h2>
+        <ul>
+            <li>Respect for everyone: We strive to create a welcoming environment where each individual is treated with kindness, dignity, and fairness. Every guest deserves to feel valued, regardless of background or circumstance.</li>
+            <li>Commitment to quality service: Our team is dedicated to providing top-notch service with a smile. We believe that excellent customer service is essential to ensuring that everyone enjoys their experience at Zak's Tavern.</li>
+            <li>Fostering community connections: At Zak's Tavern, we believe in bringing people together. Whether it’s through a shared meal, event, or casual conversation, we aim to create lasting relationships that strengthen the sense of community.</li>
+            <li>Promoting health and well-being through fun activities: We’re passionate about encouraging a healthy lifestyle and creating opportunities for fun and active engagement. Whether it’s through sports events, dance nights, or other recreational activities, we aim to make well-being an enjoyable part of our experience.</li>
+            
+        </ul>
+    </div>
+
+    <section id="drinks" class="drinks">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Drinks...JUST BECAUSE IT'S NOT HERE DOESN'T MEAN WE DON'T HAVE IT</h2>
+            </div>
+            <div class="drinks-grid">
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/castle lager.png" alt="Castle Lager">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Castle Lager</h3>
+                        <p>South Africa's favorite lager, crisp and refreshing with a mild, hoppy flavor.</p>
+                    </div>
+                </div>
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/carling black label.webp" alt="Black Label">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Carling Black Label</h3>
+                        <p>A bold, full-flavored beer with a smooth finish and distinctive taste.</p>
+                    </div>
+                </div>
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/heinken.jpg" alt="Heineken">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Heineken</h3>
+                        <p>Premium international lager with a distinctive green bottle and refreshing taste.</p>
+                    </div>
+                </div>
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/wines.jpg" alt="Premium Wines">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Premium Wines</h3>
+                        <p>Selection of quality red and white wines from local South African vineyards.</p>
+                    </div>
+                </div>
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/shooters.webp" alt="Shooters">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Shooters</h3>
+                        <p>Variety of flavorful shooters to spice up your night out with friends.</p>
+                    </div>
+                </div>
+                <div class="drink-card">
+                    <div class="drink-image">
+                        <img src="pictures/spirtz and gin.avif" alt="Spirits & Gin">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Spirits & Gin</h3>
+                        <p>Premium selection of spirits and craft gins with various mixers available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Events(Dates will be confirmed for soccer matches and fishing)</h2>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="pictures/front.jpg" alt="Live Sports Screening">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">Every Weekend</div>
+                        <h3>Live Sports Screening</h3>
+                        <p>Join us for all the major sporting events on our big screens with special drinks during matches.</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="pictures/Soccer.jpg" alt="Soccer Matches">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">More Interactive Soccer Matches</div>
+                        <h3>We're more than just a tavern!!</h3>
+                        <p>Our soccer matches foster togetherness and promote physical activities outside of our tavern for our customers. We do this as a celebration of community spirit, where people came together to enjoy friendly competition and build stronger bonds. This highlights Zak's Tavern's commitment to supporting not only socializing within the tavern but also encouraging an active and healthy lifestyle among our patrons.</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="pictures/Fishing.jpg" alt="Fishing Event">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">Fishing!!!!</div>
+                        <h3>imagine a tavern that takes you fishing...</h3>
+                        <p>Why are you still imagining... prepare those rods and join us next time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Zak's Tavern is my go-to spot after work. Great atmosphere, friendly staff, and they always share some amazing food with their customers!</p>
+                    </div>
+                    <div class="testimonial-author">- Randal</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>The best place to watch rugby and soccer matches in Boksburg! Cold beers, good company, what more can I ask for.</p>
+                    </div>
+                    <div class="testimonial-author">- Justine</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>I love their gin selection and the Friday night vibes. This tavern really brings the Reiger Park community together in a special way.</p>
+                    </div>
+                    <div class="testimonial-author">- Cardo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <p><a href="https://maps.google.com/?q=80A,+Sunny+Street,+Reiger+Park,+Boksburg,+Gauteng" target="_blank">80A Sunny Street, Reiger Park, Boksburg, 1459</a></p>
+                            <p>Boksburg, Gauteng</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <p>+27 71 846 5953</p>
+                            <p>+27 81 419 1177</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div>
+                            <p>zakstavern@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="trading-hours">
+                        <h3>Trading Hours</h3>
+                        <div class="hours-grid">
+                            <div class="day">Monday - Thursday:</div>
+                            <div>10:00 - 22:00</div>
+                            <div class="day">Friday:</div>
+                            <div>10:00 - 00:00</div>
+                            <div class="day">Saturday:</div>
+                            <div>10:00 - 00:00</div>
+                            <div class="day">Sunday:</div>
+                            <div>10:00 - 00:00</div>
+                            <div class="day">Public Holidays:</div>
+                            <div>10:00 - 22:00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14323.634196252862!2d28.215982773217976!3d-26.23148112486142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95160a76387cbf%3A0x4ce1ccb83d7d5be5!2sReiger%20Park%2C%20Boksburg!5e0!3m2!1sen!2sza!4v1711736044404!5m2!1sen!2sza" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Zak's Tavern</div>
+            <div class="social-links">
+               
+                <a href="#" title="WhatsApp">w</a>
+            </div>
+            <p>&copy; 2025 Reiger Park Tavern. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Form submission (simple placeholder)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
